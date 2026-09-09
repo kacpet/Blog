@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   site: 'https://kacpet.github.io',
-  base: '/my-blog',
+  base: '/Blog',
 
   vite: {
     plugins: [tailwindcss()],
