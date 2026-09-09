@@ -1,0 +1,44 @@
+---
+interface Props {
+  rating: number
+}
+
+const { rating } = Astro.props
+
+const clampedRating = Math.min(10, Math.max(1, Math.round(rating)))
+const waterWidth = clampedRating * 10
+---
+
+<div
+  class="flex w-full items-center justify-center py-8"
+  role="img"
+  aria-label={`Day rating: ${clampedRating} out of 10`}
+>
+  <div
+    class="relative h-[110px] w-full max-w-[600px] overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--surface)]"
+  >
+    <!-- Water -->
+    <div
+      class="absolute top-0 left-0 h-full bg-[var(--secondary)] transition-[width] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+      style={`width: ${waterWidth}%`}
+    >
+    </div>
+
+    <!-- Rating -->
+    <div
+      class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center gap-[5px]"
+    >
+      <span class="text-[3.2rem] font-bold leading-none tracking-[-0.06em]">
+        {clampedRating}
+      </span>
+
+      <small class="mb-[30px] self-end text-base"> /10 </small>
+    </div>
+  </div>
+</div>
+
+<style>
+  .wave-edge {
+    overflow: hidden;
+  }
+</style>

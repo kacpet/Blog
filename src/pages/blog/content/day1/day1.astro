@@ -1,0 +1,262 @@
+---
+import Layout from '../../../../layouts/Layout.astro'
+import DayRating from '../../rateDay/rateDay.astro'
+export const post = {
+  day: 1,
+  title: 'My first blog post',
+  date: '2026-09-06',
+  description: "Why I started this blog and what I'll upload here.",
+  category: 'Daily',
+  tags: ['Astro', 'Tailwind CSS', 'Web Development'],
+}
+---
+
+<Layout>
+  <article class="mx-auto max-w-3xl px-6 pb-24 pt-32">
+    <!-- Header -->
+    <header class="mb-16">
+      <div class="flex items-center gap-3 text-sm">
+        <span
+          class="font-medium uppercase tracking-widest text-[var(--secondary)]"
+        >
+          {post.category}
+        </span>
+
+        <span class="text-[var(--border)]">/</span>
+
+        <span class="text-[var(--muted)]">
+          Day {post.day}
+        </span>
+      </div>
+
+      <h1
+        class="mt-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+      >
+        {post.title}
+      </h1>
+
+      <p class="mt-5 text-sm text-[var(--muted)]">
+        {
+          new Date(post.date).toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+          })
+        }
+      </p>
+
+      <p
+        class="mt-8 border-l-2 border-[var(--secondary)] pl-5 text-lg leading-8 text-[var(--muted)] sm:text-xl"
+      >
+        {post.description}
+      </p>
+    </header>
+
+    <!-- Content -->
+    <div class="space-y-14 leading-8">
+      <!-- Section -->
+      <section>
+        <h2 class="mb-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+          Why did I start?
+        </h2>
+
+        <div class="space-y-4 text-[var(--foreground)]">
+          <ul class="space-y-3">
+            <li class="flex gap-3">
+              <span
+                class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--secondary)]"
+              ></span>
+
+              <span>
+                I wanna use this blog as a place to share my thoughts and what
+                I'm currently working on.
+              </span>
+            </li>
+
+            <li class="flex gap-3">
+              <span
+                class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--secondary)]"
+              ></span>
+
+              <span> I wanna remember what I did every day. </span>
+            </li>
+
+            <li class="flex gap-3">
+              <span
+                class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--secondary)]"
+              ></span>
+
+              <span> I wanna practice my English every day. </span>
+            </li>
+
+            <li class="flex gap-3">
+              <span
+                class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--secondary)]"
+              ></span>
+
+              <span>
+                I'm hoping it will help me stay motivated to improve myself
+                every day.
+              </span>
+            </li>
+          </ul>
+
+          <p>
+            Meybe It will also help my readers to learn something new, or at
+            least give them some inspiration. <br />
+            Or maybe it will be that interesting that they'll read this for fun.
+          </p>
+          <p>
+            Who knows? I don't know yet, but I hope it will be a good experience
+            for both me and my readers.<br />
+            <span class="text-gray-400 text-[15px]"
+              >(I'd try to add imgs to my posts, but I'm not a person which
+              likes to take photos, so let's see how it'll go.)</span
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- Section -->
+      <section>
+        <h2 class="mb-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+          What will be uploaded here?
+        </h2>
+
+        <div class="space-y-4">
+          <p>
+            It's kinda hard to say, I think it will be short description of what
+            I did that day,<br />
+            what I learned, how i learned it, and I will try to explain it in a easy
+            way <br />
+            so my readers can understand it too. <br />
+            I'll also write about my plans for the next day, and I'll check if I achieved
+            plans I set. <br />
+            At the end I will review that whole day and rate it from 1 to 10, and
+            write what I could do better. <br />
+          </p>
+        </div>
+      </section>
+
+      <!-- Section -->
+      <section>
+        <h2 class="mb-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+          Day 1
+        </h2>
+
+        <p>
+          Today, I got to the point, where i can finnaly write day 1. I decided
+          to create this blog probably 2 or 3 days ago, and becouse I spent most
+          of my time in work I couldn't start it earlier. this whole blog is
+          wrotten in Astro, and It's my first time using it. I decide to use
+          this freamwork becouse It should be fast even with many posts,
+          definetly faster than React that I use most of the time, it has
+          similar logic to React, so It wasn't hard to learn, If u want to learn
+          Astro, u should start with HTML and Javascript, becouse It's
+          combination of those two, after that, u can just try it just create
+          [FileName].astro and write code like this:
+          <pre
+            class="my-6 overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 text-sm leading-7"><code>---<br />JavaScript here<br />---<br /><br />HTML here</code></pre>
+          Besides that, I recently started listning a new podcast named "Luke's English
+          Podcast", Meybe its not not the best podcast ever,it contains weird topics,
+          like Vampires, I still dont believe he was talking 45 minutes about Vampires,
+          and what they can represent, but becouse topics are different every time,
+          It's not boring, and only 992ep left me to listen, I also listned 3 audiobooks
+          recently(not today), becouse my work is boring, and I have to listen to
+          something.
+          <ul>
+            <li class="flex gap-3">
+              <span
+                class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--secondary)]"
+              ></span>
+
+              <span>
+                "The Upside of Stress" - McGonigal Kelly, It was quite good
+                book, it was about stress, most of people think that stress is a
+                bad thing, but not in this book, author is thinking that the way
+                we are thinking about the stress is the reason, why its bad, if
+                we'll think about stress like a good thing that help us when we
+                do somethimg that is important for us then stress should become
+                our ally
+              </span>
+            </li>
+
+            <li class="flex gap-3">
+              <span
+                class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--secondary)]"
+              ></span>
+
+              <span>
+                "Emotional intelligence"-Daniel Goleman,I'm not a big fan of
+                this book, It lasted forever (about 20h) , I even thought about
+                turn this audiobook off, but I didn't , so it was about this
+                that emotional intelligence is the most important thing, u need
+                to achieve a success, I'm still not fully agree with this, but
+                It can be helpful when u have empathy and u can understand what
+                other people feel, and control your emotions and u can even work
+                to build Emotional intelligence so why not?
+              </span>
+            </li>
+
+            <li class="flex gap-3">
+              <span
+                class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--secondary)]"
+              ></span>
+
+              <span>
+                "Mindfulness in 10 minutes"- S.J. Scott and Barrie Davenport,
+                this audiobook was quick and fun to listen, it was about 71
+                habits that'll help you to live in present moment, I didn't
+                expect a lot from this audiobook, but it has some rly good
+                habits, they aren't hard and some of them are just better
+                version of things we are doing every day, the most important
+                thing for me I needed to relise was that if u will wake up at 7
+                a.m. and other person will go to sleep at the same time and wake
+                up at 5 a.m. and it'll be repeating for 40 years, so the person
+                that wake up later, lost almost 5 full years (if 1d = 17h (2h
+                lost per day )):
+              </span>
+            </li>
+          </ul>
+          Calculations:
+          <pre
+            class="my-6 overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 text-sm leading-7"><code>P1(0-5AM) 5H SPLEEP
+AVAILABLE TIME: (24-5) x 365 x 40 = 277'400 H
+
+P2(0-7AM) 7H SPLEEP
+AVAILABLE TIME: (24-7) x 365 x 40 = 248'200 H
+
+DIFFRENCE: 277'400 - 248'200 = 29'200 H / (24-7) H ~ 1'718 D / 365 D ~ 4.7 Y
+            </code></pre>
+        </p>
+      </section>
+
+      <!-- Section -->
+      <section>
+        <h2 class="mb-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+          Plans for tomorrow
+        </h2>
+
+        <p>
+          I'll wake up early,I'll make my bed, I'll drink glass of water, I will create blog page and about (now it doesn't exits only day page, and home)
+          I also want to read book titled "think faster, talk smarter" unfortunetly it's not translated to polish so it'll be challanging, at least I want to start this book,
+          Thats probably everything, I'd be really satisfied if I'll do everything
+        </p>
+      </section>
+
+      <!-- Section -->
+      <section>
+        <h2 class="mb-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+          How I rate this day
+        </h2>
+        <div class="space-y-4">
+          <p>
+            I'll give 7/10, it was quite productive day (I hope this blog is readable, I know, I'm not very good at writing)
+          </p>
+        </div>
+        
+      </section>
+      <DayRating class="w-full" rating={7}></DayRating>
+    </div>
+  </article>
+</Layout>
