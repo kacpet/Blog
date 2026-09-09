@@ -1,24 +1,25 @@
----
 
+---
 import Layout from '../../layouts/Layout.astro'
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 const modules = import.meta.glob('./content/*/*.astro', { eager: true })
 
 const posts = Object.entries(modules)
-.map(([path, module]) => {
-const post = module.post
+  .map(([path, module]) => {
+    const post = module.post
 
-return {
-  ...post,
-  path,
-  slug: path.split('/')[2],
-}
-
-})
-.sort(
-(a, b) =>
-new Date(b.date).getTime() - new Date(a.date).getTime(),
-)
+    return {
+      ...post,
+      path,
+      slug: path.split('/')[2],
+    }
+  })
+  .sort(
+    (a, b) =>
+      new Date(b.date).getTime() - new Date(a.date).getTime(),
+  )
 
 const visiblePosts = posts.slice(0, 5)
 const hiddenPosts = posts.slice(5)
@@ -38,125 +39,62 @@ const hiddenPosts = posts.slice(5)
             My blog · 2026
           </p>
 
-      <h1
-        class="animate-item delay-100 mt-5 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl"
-      >
-        Welcome to my
-        <span class="text-[var(--muted)]"> blog.</span>
-      </h1>
+          <h1
+            class="animate-item delay-100 mt-5 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl"
+          >
+            Welcome to my
+            <span class="text-[var(--muted)]"> blog.</span>
+          </h1>
 
-      <p
-        class="animate-item delay-200 mt-8 max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl"
-      >
-        This is where I write about what I'm learning, what I'm
-        building, what I'm reading, and how I'm trying to improve
-        every day.
-      </p>
+          <p
+            class="animate-item delay-200 mt-8 max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl"
+          >
+            This is where I write about what I'm learning, what I'm
+            building, what I'm reading, and how I'm trying to improve
+            every day.
+          </p>
 
-      <p
-        class="animate-item delay-300 mt-5 max-w-2xl leading-7 text-[var(--muted)]"
-      >
-        Every day is a small experiment. Some days are productive,
-        some aren't. I'll document both.
-      </p>
-    </div>
-  </div>
-</section>
+          <p
+            class="animate-item delay-300 mt-5 max-w-2xl leading-7 text-[var(--muted)]"
+          >
+            Every day is a small experiment. Some days are productive,
+            some aren't. I'll document both.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<!-- Posts -->
-<section>
-  <div class="mx-auto max-w-5xl px-6 py-20 sm:py-28">
-    <div class="mb-12">
-      <p
-        class="text-sm font-medium uppercase tracking-widest text-[var(--secondary)]"
-      >
-        Archive
-      </p>
+    <!-- Posts -->
+    <section>
+      <div class="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+        <div class="mb-12">
+          <p
+            class="text-sm font-medium uppercase tracking-widest text-[var(--secondary)]"
+          >
+            Archive
+          </p>
 
-      <h2
-        class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl"
-      >
-        Recent days
-      </h2>
+          <h2
+            class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl"
+          >
+            Recent days
+          </h2>
 
-      <p class="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
-        The latest things I've done, learned and thought about.
-      </p>
-    </div>
+          <p class="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
+            The latest things I've done, learned and thought about.
+          </p>
+        </div>
 
-    {
-      posts.length > 0 ? (
-        <div class="divide-y divide-[var(--border)]">
-          <!-- Visible posts -->
-          {visiblePosts.map((post, index) => (
-            <a
-              href={`/blog/content/${post.slug}/${post.slug}`}
-              class={`post-item group block py-8 transition-all duration-500 hover:px-4 ${
-                index === 0 ? 'pt-0' : ''
-              }`}
-            >
-              <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-                <div class="max-w-3xl">
-                  <div class="flex flex-wrap items-center gap-3 text-sm">
-                    <span
-                      class="font-medium text-[var(--secondary)]"
-                    >
-                      Day {post.day}
-                    </span>
-
-                    <span class="text-[var(--border)]">/</span>
-
-                    <span class="text-[var(--muted)]">
-                      {new Date(post.date).toLocaleDateString(
-                        'en-GB',
-                        {
-                          day: 'numeric',
-                          month: 'long',
-                          year: 'numeric',
-                        },
-                      )}
-                    </span>
-
-                    {post.category && (
-                      <>
-                        <span class="text-[var(--border)]">
-                          /
-                        </span>
-
-                        <span class="text-[var(--muted)]">
-                          {post.category}
-                        </span>
-                      </>
-                    )}
-                  </div>
-
-                  <h3
-                    class="mt-3 text-2xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-[var(--secondary)] sm:text-3xl"
-                  >
-                    {post.title}
-                  </h3>
-
-                  <p class="mt-3 leading-7 text-[var(--muted)]">
-                    {post.description}
-                  </p>
-                </div>
-
-                <span
-                  class="shrink-0 text-xl text-[var(--secondary)] transition-transform duration-300 group-hover:translate-x-2"
-                >
-                  →
-                </span>
-              </div>
-            </a>
-          ))}
-
-          <!-- Hidden posts -->
-          {hiddenPosts.length > 0 && (
-            <div id="hidden-posts" class="hidden">
-              {hiddenPosts.map((post) => (
+        {
+          posts.length > 0 ? (
+            <div class="divide-y divide-[var(--border)]">
+              <!-- Visible posts -->
+              {visiblePosts.map((post, index) => (
                 <a
-                  href={`/blog/content/${post.slug}/${post.slug}`}
-                  class="post-item group block py-8 transition-all duration-500 hover:px-4"
+                  href={`${base}/blog/content/${post.slug}/${post.slug}/`}
+                  class={`post-item group block py-8 transition-all duration-500 hover:px-4 ${
+                    index === 0 ? 'pt-0' : ''
+                  }`}
                 >
                   <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
                     <div class="max-w-3xl">
@@ -167,25 +105,22 @@ const hiddenPosts = posts.slice(5)
                           Day {post.day}
                         </span>
 
-                        <span class="text-[var(--border)]">
-                          /
-                        </span>
+                        <span class="text-[var(--border)]">/</span>
 
                         <span class="text-[var(--muted)]">
-                          {new Date(
-                            post.date,
-                          ).toLocaleDateString('en-GB', {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric',
-                          })}
+                          {new Date(post.date).toLocaleDateString(
+                            'en-GB',
+                            {
+                              day: 'numeric',
+                              month: 'long',
+                              year: 'numeric',
+                            },
+                          )}
                         </span>
 
                         {post.category && (
                           <>
-                            <span
-                              class="text-[var(--border)]"
-                            >
+                            <span class="text-[var(--border)]">
                               /
                             </span>
 
@@ -215,54 +150,121 @@ const hiddenPosts = posts.slice(5)
                   </div>
                 </a>
               ))}
+
+              <!-- Hidden posts -->
+              {hiddenPosts.length > 0 && (
+                <div id="hidden-posts" class="hidden">
+                  {hiddenPosts.map((post) => (
+                    <a
+                      href={`${base}/blog/content/${post.slug}/${post.slug}/`}
+                      class="post-item group block py-8 transition-all duration-500 hover:px-4"
+                    >
+                      <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                        <div class="max-w-3xl">
+                          <div class="flex flex-wrap items-center gap-3 text-sm">
+                            <span
+                              class="font-medium text-[var(--secondary)]"
+                            >
+                              Day {post.day}
+                            </span>
+
+                            <span class="text-[var(--border)]">
+                              /
+                            </span>
+
+                            <span class="text-[var(--muted)]">
+                              {new Date(
+                                post.date,
+                              ).toLocaleDateString('en-GB', {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric',
+                              })}
+                            </span>
+
+                            {post.category && (
+                              <>
+                                <span
+                                  class="text-[var(--border)]"
+                                >
+                                  /
+                                </span>
+
+                                <span class="text-[var(--muted)]">
+                                  {post.category}
+                                </span>
+                              </>
+                            )}
+                          </div>
+
+                          <h3
+                            class="mt-3 text-2xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-[var(--secondary)] sm:text-3xl"
+                          >
+                            {post.title}
+                          </h3>
+
+                          <p class="mt-3 leading-7 text-[var(--muted)]">
+                            {post.description}
+                          </p>
+                        </div>
+
+                        <span
+                          class="shrink-0 text-xl text-[var(--secondary)] transition-transform duration-300 group-hover:translate-x-2"
+                        >
+                          →
+                        </span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      ) : (
-        <div
-          class="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-10 text-center"
-        >
-          <p class="text-lg font-medium">
-            No posts yet.
-          </p>
-
-          <p class="mt-2 text-[var(--muted)]">
-            The first day will appear here soon.
-          </p>
-        </div>
-      )
-    }
-
-    <!-- Show more button -->
-    {
-      hiddenPosts.length > 0 && (
-        <div id="show-more-container" class="mt-12 flex justify-center">
-          <button
-            id="show-more"
-            type="button"
-            class="group inline-flex items-center gap-3 rounded-full border border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-sm font-medium transition-all duration-300 hover:-translate-y-1 hover:border-[var(--secondary)] hover:text-[var(--secondary)] hover:shadow-lg"
-          >
-            <span id="show-more-text">
-              Show all posts
-            </span>
-
-            <span
-              id="show-more-icon"
-              class="transition-transform duration-300"
+          ) : (
+            <div
+              class="rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-10 text-center"
             >
-              ↓
-            </span>
-          </button>
-        </div>
-      )
-    }
-  </div>
-</section>
+              <p class="text-lg font-medium">
+                No posts yet.
+              </p>
 
+              <p class="mt-2 text-[var(--muted)]">
+                The first day will appear here soon.
+              </p>
+            </div>
+          )
+        }
+
+        <!-- Show more button -->
+        {
+          hiddenPosts.length > 0 && (
+            <div
+              id="show-more-container"
+              class="mt-12 flex justify-center"
+            >
+              <button
+                id="show-more"
+                type="button"
+                class="group inline-flex items-center gap-3 rounded-full border border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-sm font-medium transition-all duration-300 hover:-translate-y-1 hover:border-[var(--secondary)] hover:text-[var(--secondary)] hover:shadow-lg"
+              >
+                <span id="show-more-text">
+                  Show all posts
+                </span>
+
+                <span
+                  id="show-more-icon"
+                  class="transition-transform duration-300"
+                >
+                  ↓
+                </span>
+              </button>
+            </div>
+          )
+        }
+      </div>
+    </section>
   </main>
 
   <!-- Show more / Show less -->
-
   <script>
     const button = document.querySelector('#show-more')
     const hiddenPosts = document.querySelector('#hidden-posts')
@@ -307,7 +309,6 @@ const hiddenPosts = posts.slice(5)
   </script>
 
   <!-- Animations -->
-
   <script>
     const animatedItems =
       document.querySelectorAll('.animate-item')
@@ -369,5 +370,7 @@ const hiddenPosts = posts.slice(5)
       }
     }
   </style>
-
 </Layout>
+
+
+

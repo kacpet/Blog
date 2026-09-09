@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro'
 
+const base = import.meta.env.BASE_URL
+
 const modules = import.meta.glob('./blog/content/*/*.astro', { eager: true })
 
 const posts = Object.entries(modules)
@@ -51,14 +53,14 @@ const latestPosts = posts.slice(0, 3)
 
         <div class="animate-item delay-300 mt-10 flex flex-wrap gap-4">
           <a
-            href="/blog"
+            href={`${base}/blog`}
             class="rounded-full bg-[var(--secondary)] px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-1 hover:opacity-80 hover:shadow-lg"
           >
             Read the blog
           </a>
 
           <a
-            href="/about"
+            href={`${base}/about`}
             class="rounded-full border border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-sm font-medium transition-all duration-300 hover:-translate-y-1 hover:border-[var(--secondary)] hover:text-[var(--secondary)] hover:shadow-lg"
           >
             About me
@@ -71,7 +73,7 @@ const latestPosts = posts.slice(0, 3)
   <!-- Today's post -->
   {
     latestPost && (
-      <section class="scroll-section flex min-h-screen snap-start items-center border-y border-[var(--border)] overflow-hidden">
+      <section class="scroll-section flex min-h-screen snap-start items-center overflow-hidden border-y border-[var(--border)]">
         <div class="mx-auto w-full max-w-7xl px-6 py-20">
           <div class="section-content">
             <div class="mb-8 flex items-center justify-between">
@@ -91,7 +93,7 @@ const latestPosts = posts.slice(0, 3)
             </div>
 
             <a
-              href={`/blog/content/${latestPost.slug}/${latestPost.slug}`}
+              href={`${base}/blog/content/${latestPost.slug}/${latestPost.slug}`}
               class="animate-item delay-200 group block rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[var(--secondary)] hover:shadow-2xl sm:p-10"
             >
               <div class="max-w-3xl">
@@ -143,7 +145,7 @@ const latestPosts = posts.slice(0, 3)
           </div>
 
           <a
-            href="/blog"
+            href={`${base}/blog`}
             class="animate-item delay-200 hidden text-sm font-medium text-[var(--secondary)] transition-opacity hover:opacity-60 sm:block"
           >
             View all →
@@ -156,14 +158,14 @@ const latestPosts = posts.slice(0, 3)
           {
             latestPosts.map((post, index) => (
               <a
-                href={`/blog/content/${post.slug}/${post.slug}`}
+                href={`${base}/blog/content/${post.slug}/${post.slug}`}
                 class={`group flex flex-col gap-3 py-7 transition-all duration-500 hover:px-4 sm:flex-row sm:items-center sm:justify-between ${
                   index === 0 ? 'first-post' : ''
                 }`}
               >
                 <div>
                   <p class="text-sm text-[var(--muted)]">
-                    {new Date(post.date).toLocaleDateString('en-US')}· Day{' '}
+                    {new Date(post.date).toLocaleDateString('en-US')} · Day{' '}
                     {post.day}
                   </p>
 
@@ -181,7 +183,7 @@ const latestPosts = posts.slice(0, 3)
         </div>
 
         <a
-          href="/blog"
+          href={`${base}/blog`}
           class="animate-item delay-300 mt-8 block text-sm font-medium text-[var(--secondary)] transition-opacity hover:opacity-60 sm:hidden"
         >
           View all posts →
@@ -192,7 +194,7 @@ const latestPosts = posts.slice(0, 3)
 
   <!-- About -->
   <section
-    class="scroll-section flex min-h-screen snap-start items-center border-t border-[var(--border)] overflow-hidden"
+    class="scroll-section flex min-h-screen snap-start items-center overflow-hidden border-t border-[var(--border)]"
   >
     <div class="mx-auto w-full max-w-7xl px-6 py-20">
       <div class="section-content grid gap-10 md:grid-cols-2 md:items-center">
@@ -219,7 +221,7 @@ const latestPosts = posts.slice(0, 3)
           </p>
 
           <a
-            href="about/"
+            href={`${base}/about`}
             class="animate-item delay-300 mt-6 inline-block text-sm font-medium text-[var(--secondary)] transition-all duration-300 hover:translate-x-1 hover:opacity-60"
           >
             Learn more →
