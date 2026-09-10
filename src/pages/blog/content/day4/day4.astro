@@ -1,0 +1,96 @@
+---
+import Layout from '../../../../layouts/Layout.astro'
+import DayRating from '../../rateDay/rateDay.astro'
+
+export const post = {
+  day: 3,
+  title: 'Day 3',
+  date: '2026-09-09',
+  description: 'Forth day, of daily',
+  category: 'Daily',
+  tags: ['Astro', 'Tailwind CSS', 'Web Development'],
+}
+---
+
+<Layout>
+  <article class="mx-auto max-w-3xl px-6 pb-24 pt-32">
+    <!-- Header -->
+    <header class="mb-16">
+      <div class="flex items-center gap-3 text-sm">
+        <span
+          class="font-medium uppercase tracking-widest text-[var(--secondary)]"
+        >
+          {post.category}
+        </span>
+
+        <span class="text-[var(--border)]">/</span>
+
+        <span class="text-[var(--muted)]">
+          Day {post.day}
+        </span>
+      </div>
+
+      <h1
+        class="mt-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+      >
+        {post.title}
+      </h1>
+
+      <p class="mt-5 text-sm text-[var(--muted)]">
+        {
+          new Date(post.date).toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+          })
+        }
+      </p>
+
+      <p
+        class="mt-8 border-l-2 border-[var(--secondary)] pl-5 text-lg leading-8 text-[var(--muted)] sm:text-xl"
+      >
+        {post.description}
+      </p>
+    </header>
+
+    <!-- Content -->
+    <div class="space-y-14 leading-8">
+      <!-- Section -->
+      <section>
+        <h2 class="mb-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+          What I did today?
+        </h2>
+       <p>         
+Today,I did my habit but  I spent almost whole day in work, earlier I watched "You" with my dad (on Netflix). As I wrote yesterday I listened new audiobook "think and bogać się" It was really one of the best books I listened, I'll probably buy paper version, to read it by myself and probably not once, This book is focused on achieving your goals, and what u need to do to make everything possible, for example u need a goal to achieve without goal and time to reach it you won't reach it as fast as you want If you'd even reach it
+        </p>
+      </section>
+    </div>
+
+    <!-- Section -->
+    <section class="py-5">
+      <h2 class="mb-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+        Plans for tomorrow
+      </h2>
+
+      <p>
+        I'll wake up early. I'll make my bed. I'll drink glass of water (my
+        habbits from mindfulness), I'll read part of book "think faster, talk
+        smarter",I'll go to work and I'll listen audiobooks, I'll find audiobook
+        to listen, and wrote blog about this (the same plan as yesterday)
+      </p>
+    </section>
+
+    <!-- Section -->
+    <section>
+      <h2 class="mb-5 text-2xl font-semibold tracking-tight sm:text-3xl">
+        How I rate this day
+      </h2>
+      <div class="space-y-4">
+        <p>
+          I'll give 8/10, I did everything I planed and I couldn't do much more
+        </p>
+      </div>
+    </section>
+    <DayRating class="w-full" rating={8} />
+  </article>
+</Layout>
